@@ -1,6 +1,12 @@
+using cw9cwcw.Services;
+
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+// Add services to the container.
+builder.Services.AddControllers();
+builder.Services.AddScoped<IDbService, DbService>();
+var host = builder.Build();
 
-app.Run();
+host.MapControllers();
+
+host.Run();
